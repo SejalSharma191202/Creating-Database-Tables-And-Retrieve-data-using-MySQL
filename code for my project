@@ -1,0 +1,113 @@
+creating tables :
+BANKER_INFO (banker_id, banker_name, banker_email)
+BRANCH (branch_name, branch_city, assets)
+CUSTOMER (customer_id, customer_name, customer_street, customer_city)
+LOAN (loan_number, customer_id, amount)
+ACCOUNT (account_no, balance, category)
+ 	CREDIT_CARD (credit_card_no, customer_name, expiry_date, limit)
+
+
+
+
+
+code for creating tables:
+
+-- Creating BANKER_INFO table
+CREATE TABLE BANKER_INFO (
+    banker_id INT PRIMARY KEY,
+    banker_name VARCHAR(255),
+    banker_email VARCHAR(255)
+);
+
+-- Creating BRANCH table
+CREATE TABLE BRANCH (
+    branch_name VARCHAR(255) PRIMARY KEY,
+    branch_city VARCHAR(255),
+    assets DECIMAL(10,2)
+);
+
+-- Creating CUSTOMER table
+CREATE TABLE CUSTOMER (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(255),
+    customer_street VARCHAR(255),
+    customer_city VARCHAR(255)
+);
+
+-- Creating LOAN table
+CREATE TABLE LOAN (
+    loan_number INT PRIMARY KEY,
+    customer_id INT,
+    amount DECIMAL(10,2),
+    FOREIGN KEY (customer_id) REFERENCES CUSTOMER(customer_id)
+);
+
+-- Creating ACCOUNT table
+CREATE TABLE ACCOUNT (
+    account_no INT PRIMARY KEY,
+    balance DECIMAL(10,2),
+    category VARCHAR(255)
+);
+
+-- Creating CREDIT_CARD table
+CREATE TABLE CREDIT_CARD (
+    credit_card_no INT PRIMARY KEY,
+    customer_name VARCHAR(255),
+    expiry_date DATE,
+    limit DECIMAL(10,2)
+);
+Adding data to the tables:
+-- Insert data into BANKER_INFO table
+INSERT INTO BANKER_INFO (banker_id, banker_name, banker_email)
+VALUES
+(1, 'John Doe', 'john.doe@example.com'),
+(2, 'Jane Smith', 'jane.smith@example.com'),
+(3, 'Robert Johnson', 'robert.johnson@example.com'),
+(4, 'Emily Davis', 'emily.davis@example.com'),
+(5, 'Michael Brown', 'michael.brown@example.com');
+
+-- Insert data into BRANCH table
+INSERT INTO BRANCH (branch_name, branch_city, assets)
+VALUES
+('Main Branch', 'New York', 1000000),
+('Katol Road Branch', 'Nagpur', 800000),
+('SBI Kingsway Branch', 'Nagpur', 1200000),
+('Westside Branch', 'San Francisco', 900000),
+('Eastside Branch', 'Miami', 1100000);
+
+-- Insert data into CUSTOMER table
+INSERT INTO CUSTOMER (customer_id, customer_name, customer_street, customer_city)
+VALUES
+(101, 'Alice Johnson', '123 Main St', 'New York'),
+(102, 'Bob Williams', '456 Oak St', 'Chicago'),
+(103, 'Charlie Davis', '789 Pine St', 'Los Angeles'),
+(104, 'Maya Miller', '101 Elm St', 'San Francisco'),
+(105, 'David Wilson', '202 Maple St', 'Miami');
+
+-- Insert data into LOAN table
+INSERT INTO LOAN (loan_number, customer_id, amount)
+VALUES
+(201, 101, 50000),
+(202, 102, 70000),
+(203, 103, 100000),
+(204, 104, 80000),
+(205, 105, 120000);
+
+-- Insert data into ACCOUNT table
+INSERT INTO ACCOUNT (account_no, balance, category)
+VALUES
+(301, 15000, 'Savings'),
+(302, 2000, 'Checking'),
+(303, 50000, 'Investment'),
+(304, 10000, 'Savings'),
+(305, 3000, 'Checking');
+
+-- Insert data into CREDIT_CARD table
+INSERT INTO CREDIT_CARD (credit_card_no, customer_name, expiry_date, limit)
+VALUES
+('1111', 'Alice Johnson', '2025-06-01', 10000),
+('5555', 'Bob Williams', '2024-12-01', 8000),
+('9999', 'Charlie Davis', '2023-09-01', 12000),
+('1234', 'Maya Miller', '2022-11-01', 15000),
+('1314', 'David Wilson', '2023-05-01', 20000);
+
